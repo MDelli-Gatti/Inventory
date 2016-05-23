@@ -12,6 +12,11 @@ public class Main {
         ArrayList<InventoryItem> items = new ArrayList<>();
 
         while (true){
+            int i = 1;
+            for (InventoryItem inventoryItem : items) {
+                System.out.println(i + "." + " [" + inventoryItem.quantity + "] " + inventoryItem.item);
+                i = i + 1;
+            }
             System.out.println();
             System.out.println("Options:");
             System.out.println("1. Create a new item");
@@ -28,8 +33,8 @@ public class Main {
                     System.out.println("Enter the quantity.");
                     String quantityStr = Main.scanner.nextLine();
                     int quantity = Integer.valueOf(quantityStr);
-                    InventoryItem newItem = new InventoryItem(item, quantity);
-                    items.add(newItem);
+                    InventoryItem setItem = new InventoryItem(item, quantity);
+                    items.add(setItem);
                     break;
 
                 case "2":
@@ -48,14 +53,13 @@ public class Main {
                     InventoryItem tempItem1 = items.get(numb - 1);
                     System.out.println("What is the new quantity of " + itemU + "?");
                     String quan = Main.scanner.nextLine();
-                    int quant = Integer.valueOf(quan);
-                    tempItem1.quantity = quant;
-                    items.add(tempItem1);
+                    tempItem1.quantity = Integer.valueOf(quan);
 
                     break;
                 default:
                     System.out.println("invalid selection");
             }
+
 
         }
     }
