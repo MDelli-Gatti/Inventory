@@ -28,23 +28,29 @@ public class Main {
                     System.out.println("Enter the quantity.");
                     String quantityStr = Main.scanner.nextLine();
                     int quantity = Integer.valueOf(quantityStr);
-                    InventoryItem pack = new InventoryItem(item, quantity);
-                    items.add(pack);
+                    InventoryItem newItem = new InventoryItem(item, quantity);
+                    items.add(newItem);
                     break;
 
                 case "2":
                     //remove item
-                    System.out.println("Which Item would you like to remove?");
+                    System.out.println("Which item number would you like to remove?");
                     String remove = Main.scanner.nextLine();
-                    items.remove(remove);
+                    int num = Integer.valueOf(remove);
+                    InventoryItem tempItem = items.get(num - 1);
+                    items.remove(tempItem);
                     break;
                 case "3":
                     //update quantity
-                    System.out.println("Which item would you like to update?");
+                    System.out.println("Which item number would you like to update?");
                     String itemU = Main.scanner.nextLine();
+                    int numb = Integer.valueOf(itemU);
+                    InventoryItem tempItem1 = items.get(numb - 1);
                     System.out.println("What is the new quantity of " + itemU + "?");
                     String quan = Main.scanner.nextLine();
                     int quant = Integer.valueOf(quan);
+                    tempItem1.quantity = quant;
+                    items.add(tempItem1);
 
                     break;
                 default:
