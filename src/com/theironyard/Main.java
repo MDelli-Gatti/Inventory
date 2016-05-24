@@ -4,11 +4,40 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
     static Scanner scanner = new Scanner(System.in);
 
+    public static void createItem(ArrayList<InventoryItem> items) {
+        System.out.println("Enter your new item.");
+        String item = Main.scanner.nextLine();
+        System.out.println("Enter the quantity.");
+        String quantityStr = Main.scanner.nextLine();
+        int quantity = Integer.valueOf(quantityStr);
+        InventoryItem setItem = new InventoryItem(item, quantity);
+        items.add(setItem);
 
+    }
+
+    public static void removeItem(ArrayList<InventoryItem> items){
+        System.out.println("Which item number would you like to remove?");
+        String remove = Main.scanner.nextLine();
+        int num = Integer.valueOf(remove);
+        InventoryItem tempItem = items.get(num - 1);
+        items.remove(tempItem);
+    }
+
+    public static void updateQuantity (ArrayList<InventoryItem> items){
+        System.out.println("Which item number would you like to update?");
+        String itemU = Main.scanner.nextLine();
+        int numb = Integer.valueOf(itemU);
+        InventoryItem tempItem1 = items.get(numb - 1);
+        System.out.println("What is the new quantity of " + itemU + "?");
+        String quan = Main.scanner.nextLine();
+        tempItem1.quantity = Integer.valueOf(quan);
+    }
 
     public static void main(String[] args) {
+
         ArrayList<InventoryItem> items = new ArrayList<>();
 
         while (true){
@@ -17,7 +46,6 @@ public class Main {
                 System.out.println(i + "." + " [" + inventoryItem.quantity + "] " + inventoryItem.item);
                 i = i + 1;
             }
-            System.out.println();
             System.out.println("Options:");
             System.out.println("1. Create a new item");
             System.out.println("2. Remove an item");
@@ -27,35 +55,17 @@ public class Main {
 
             switch (selection) {
                 case "1":
-                    //create item
-                    System.out.println("Enter your new item.");
-                    String item = Main.scanner.nextLine();
-                    System.out.println("Enter the quantity.");
-                    String quantityStr = Main.scanner.nextLine();
-                    int quantity = Integer.valueOf(quantityStr);
-                    InventoryItem setItem = new InventoryItem(item, quantity);
-                    items.add(setItem);
+                    createItem(items);
                     break;
 
                 case "2":
-                    //remove item
-                    System.out.println("Which item number would you like to remove?");
-                    String remove = Main.scanner.nextLine();
-                    int num = Integer.valueOf(remove);
-                    InventoryItem tempItem = items.get(num - 1);
-                    items.remove(tempItem);
+                    removeItem(items);
                     break;
-                case "3":
-                    //update quantity
-                    System.out.println("Which item number would you like to update?");
-                    String itemU = Main.scanner.nextLine();
-                    int numb = Integer.valueOf(itemU);
-                    InventoryItem tempItem1 = items.get(numb - 1);
-                    System.out.println("What is the new quantity of " + itemU + "?");
-                    String quan = Main.scanner.nextLine();
-                    tempItem1.quantity = Integer.valueOf(quan);
 
+                case "3":
+                    updateQuantity(items);
                     break;
+
                 default:
                     System.out.println("invalid selection");
             }
